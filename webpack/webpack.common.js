@@ -34,6 +34,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '..', './dist'),
     filename: 'scripts/bundle.[fullhash].js',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({

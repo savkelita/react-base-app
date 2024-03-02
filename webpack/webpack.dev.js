@@ -3,14 +3,15 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 // Api HOST, PORT, URL
 const apiHost = process.env.APIHOST || 'localhost'
-const apiPort = process.env.APIPORT || 8080
-const apiUrl = `https://${apiHost}:${apiPort}`
+const apiUrl = `https://${apiHost}`
+// const apiPort = process.env.APIPORT || 8080
+// const apiUrl = `https://${apiHost}:${apiPort}`
 
 console.log('\x1b[34b', 'Using API on: ', apiUrl)
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'eval',
   devServer: {
     server: 'https',
     hot: true,
@@ -18,7 +19,7 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
     proxy: {
-      '/api/': {
+      '/': {
         target: apiUrl,
         secure: false,
         changeOrigin: true,

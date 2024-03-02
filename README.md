@@ -20,6 +20,12 @@ In order to **run the application** type the following command:
 yarn start
 ```
 
+Or if you want to run it with API:
+
+```bash
+APIHOST=jsonplaceholder.typicode.com yarn start
+```
+
 The Application Runs on **https://localhost:3000**
 
 
