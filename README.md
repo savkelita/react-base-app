@@ -2,7 +2,14 @@
 
 ## Intro
 
-TODO
+Get started React Application which includes:
+
+1. [Microsoft FluentUI 9](https://react.fluentui.dev/?path=/docs/concepts-introduction--page) Components and eco system.
+2. [io-ts](https://gcanti.github.io/io-ts/) runtime type system for IO decoding/encoding.
+3. [fp-ts](https://gcanti.github.io/fp-ts/) library for typed functional programming in Typescript.
+4. [Webpack](https://webpack.js.org/) module bundler.
+
+and much more. Check code and working examples.
 
 ## Cloning and Running the Application in local
 
@@ -50,4 +57,6 @@ And run **yarn build**.
 
 Recommended code editor is **VSCode**. Please install all [recommended extensions](./.vscode/extensions.json).
 
-*TODO Code organization, folders, structure etc.*
+## INFO Table
+
+The future plan is to replace `io-ts` and `fp-ts` with `Effect`. [Effect](https://effect.website/) is a powerful TypeScript library designed to help developers easily create complex, synchronous, and asynchronous programs.
