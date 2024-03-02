@@ -1,7 +1,8 @@
 import axios, { isAxiosError } from 'axios'
-import { pipe } from 'fp-ts/function'
+import { pipe, flow } from 'fp-ts/function'
 import { failure } from 'io-ts/lib/PathReporter'
 import { NonEmptyArray, head } from 'fp-ts/lib/NonEmptyArray'
+import { EmptyString } from '../io-extra'
 import * as E from 'fp-ts/Either'
 import * as TE from 'fp-ts/TaskEither'
 import * as io from 'io-ts'
@@ -28,13 +29,30 @@ export type Error = io.TypeOf<typeof ioError>
 
 export type ErrorReport = { content: string }
 
-// TODO: Napisi ovu f-ju za razlicite status kodove.
+// TODO: Write a funciton for different status codes;
 export const reportValidationErrors = (errors: NonEmptyArray<Error>): ErrorReport => {
   const printValidationError = (error: Error): string => error.message
   const content = pipe(errors, head, printValidationError)
 
   return { content }
 }
+
+export const decoderFromCodec = <a>(codec: io.Type<a, any, unknown>) =>
+  flow(
+    codec.decode,
+    E.mapLeft(errors => failure(errors).join('\n\n')),
+  )
+
+export const noContentCodec = new io.Type(
+  'NoContent',
+  io.void.is,
+  (u, c) =>
+    pipe(
+      EmptyString.validate(u, c),
+      E.map(() => undefined),
+    ),
+  () => ({}),
+)
 
 export const get = <Request>(url: string, codec: io.Type<Request>): TE.TaskEither<ErrorReport, Request> =>
   pipe(
@@ -54,6 +72,34 @@ export const get = <Request>(url: string, codec: io.Type<Request>): TE.TaskEithe
         E.mapLeft((errors: io.Errors) => {
           console.error(failure(errors).join('\n\n'))
           return { content: `Unexpected response from the Server` }
+        }),
+        TE.fromEither,
+      ),
+    ),
+  )
+
+export const post = <Request, Response>(
+  url: string,
+  request: Request,
+  codec: io.Type<Response, any, unknown>,
+): TE.TaskEither<ErrorReport, Response> =>
+  pipe(
+    TE.tryCatch(
+      () => axios.post<Request>(url, request),
+      error => {
+        if (isAxiosError(error)) {
+          const code = error.response ? `- Code: ${error.response.status}` : ''
+          return { content: `Unexpected Server Error ${code}` }
+        }
+        return { content: `Unexpected Server Error` }
+      },
+    ),
+    TE.chain(response =>
+      pipe(
+        codec.decode(response.data),
+        E.mapLeft((errors: io.Errors) => {
+          console.error(failure(errors).join('\n\n'))
+          return { content: `Unexpected Server Error` }
         }),
         TE.fromEither,
       ),
