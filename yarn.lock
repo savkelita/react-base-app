@@ -3445,10 +3445,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
-effect@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/effect/-/effect-2.4.1.tgz#c690b4a6f39075248ac66280c0f49bd0e131d53e"
-  integrity sha512-YsoMB/EGCohGKFyTPYqaFe2B7UCU2MM303dkoowF8DNOdks/4q/00cyhTbBUmM/0FMDoUPmUi/AJ0Aj3E7vO1A==
+effect@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/effect/-/effect-3.0.5.tgz#d1dbdbf58bf46924f0db682df084597dfed2a17d"
+  integrity sha512-cXAKns46iWEQkZHgRU+ehgfV2Au34HopVIBkWwTbD+iRR50zMOHNEHEjXGnyJPtWyYlLBQtB9AZXFoc72ChwPA==
 
 electron-to-chromium@^1.4.535:
   version "1.4.594"
@@ -5973,6 +5973,13 @@ run-parallel@^1.1.9:
   integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   dependencies:
     queue-microtask "^1.2.2"
+
+rxjs@^7.8.1:
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.1.tgz#6f6f3d99ea8044291efd92e7c7fcf562c4057543"
+  integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
+  dependencies:
+    tslib "^2.1.0"
 
 safe-array-concat@^1.0.1:
   version "1.0.1"
