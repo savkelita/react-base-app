@@ -56,7 +56,3 @@ And run **yarn build**.
 ## Development
 
 Recommended code editor is **VSCode**. Please install all [recommended extensions](./.vscode/extensions.json).
-
-## INFO Table
-
-The future plan is to replace `io-ts` and `fp-ts` with `Effect`. [Effect](https://effect.website/) is a powerful TypeScript library designed to help developers easily create complex, synchronous, and asynchronous programs.
